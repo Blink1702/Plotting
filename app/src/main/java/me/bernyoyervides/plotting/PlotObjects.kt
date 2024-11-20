@@ -1,18 +1,15 @@
 package me.bernyoyervides.plotting
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
-import kotlin.math.pow
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import kotlin.math.pow
 
 val colorList = listOf<Color>(Color.Blue,Color.Red,Color.Green, Color.Yellow, Color.Magenta,Color.Cyan)
 
@@ -66,7 +63,7 @@ class Tokenizer(val str : String) {
             }
             if (ch in '0'..'9' || ch == '.') {
                 var sawDot = false
-                var numStr = Character.toString(ch)
+                var numStr = ch.toString()
                 if(ch == '.') {
                     sawDot = true
                 }
@@ -119,17 +116,21 @@ open class Node()  {
 
 class OperNode(val oper : Char,val left : Node,val right: Node) : Node() {
     override fun evalAt(x: Float) : Float {
-        when(oper) {
+        return when(oper) {
             '+' ->
-                return left.evalAt(x= x) + right.evalAt(x= x)
+                left.evalAt(x= x) + right.evalAt(x= x)
+
             '-' ->
-                return left.evalAt(x= x) - right.evalAt(x= x)
+                left.evalAt(x= x) - right.evalAt(x= x)
+
             '*' ->
-                return left.evalAt(x= x) * right.evalAt(x= x)
+                left.evalAt(x= x) * right.evalAt(x= x)
+
             '^' ->
-                return left.evalAt(x= x).pow(right.evalAt(x= x))
+                left.evalAt(x= x).pow(right.evalAt(x= x))
+
             else ->
-                return 0.0f
+                0.0f
         }
     }
 }
