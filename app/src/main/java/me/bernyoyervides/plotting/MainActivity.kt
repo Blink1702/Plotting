@@ -112,7 +112,6 @@ fun Graph(plot : PlotModel, modifier: Modifier = Modifier) {
                 }
             }
         }
-
         Column(verticalArrangement = Arrangement.Top, modifier = modifier.weight(1f).background(Color.White)
             .fillMaxSize()
             .padding(10.dp),
