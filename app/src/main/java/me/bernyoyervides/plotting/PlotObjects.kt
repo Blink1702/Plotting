@@ -22,8 +22,8 @@ class Line(val str: String, val colorId: Int) {
     var ptList = mutableListOf<Pair<Float, Float>>()
 
     fun plotting(scope: DrawScope) {
-        var x = scope.drawContext.size.width*-1
-        while(x<scope.drawContext.size.width){
+        var x = (scope.drawContext.size.width/2)*-1
+        while(x<=(scope.drawContext.size.width/2)){
             ptList.add(Pair(x, root?.evalAt(x)!!))
             x += 0.1f
         }
